@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4A81A1A2-325C-4170-99D0-67B2E7952ACA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>metamorphosis</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D5D016D5-C428-43B8-A56F-A3C37D6473BC</key>
+		<string>https://github.com/h-nishihata/metamorphosis_03</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>metamorphosis.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D5D016D5-C428-43B8-A56F-A3C37D6473BC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/h-nishihata/metamorphosis_03</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D5D016D5-C428-43B8-A56F-A3C37D6473BC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D5D016D5-C428-43B8-A56F-A3C37D6473BC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>metamorphosis_03</string>
+		</dict>
+	</array>
+</dict>
+</plist>
