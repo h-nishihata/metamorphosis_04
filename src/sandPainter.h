@@ -13,9 +13,7 @@ public:
     
     float p;
     float g;
-    
-    float bX;
-    float bY;
+
 };
 
 #endif

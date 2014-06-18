@@ -1,23 +1,27 @@
 #include "pen.h"
-float ang;
+
 pen::pen(){
     
     centx = ofRandom(1440);
     centy = ofRandom(900);
     
-    waitCnt = ofRandom(0, 300);
-    step = 0;
+//    waitCnt = ofRandom(0, 300);
+//    step = 0;
     
-    col = 0;
-    flag = false;
-    a = ofRandom(0, 255);
-    waiting = ofRandom(0,80);
-    
-    radius = ofRandom(20);
+    radius = ofRandom(100);
     radiusNoise = ofRandom(10);
-    radLimit = ofRandom(10) + 40;
+
     speedX = ofRandom(-3,3);
-    //    speedY = ofRandom(-5,5);
+    speedY = ofRandom(-0.1,0.1);
+    
+    if(ofRandom(100) > 60){
+        setEraser = true;
+    }else{
+        setEraser = false;
+    }
+    
+    a = ofRandom(255) + 100;
+    waiting = ofRandom(0,80);
     
 }
 //--------------------------------------------------------------
@@ -47,10 +51,13 @@ void pen::setID(int ID){
 //--------------------------------------------------------------
 void pen::update(){
     
+    
+    //  *****   radius  *****
+    
     if (flag_r == false) {
         
         radius+=0.1;
-        if(radius > radLimit) {
+        if(radius > (r+g+b)*1.2) {
             flag_r = true;
         }
         
@@ -64,33 +71,34 @@ void pen::update(){
     }
     
     
+    //  *****   colors  *****
     
-    
-    if (flag == false) {
+    if (flag_c == false) {
         r+=0.1;
         g+=0.1;
         b+=0.1;
         if(r>=255 || g>=255 || b>=25){
-            flag = true;
+            flag_c = true;
         }
-    }else if (flag == true){
+    }else if (flag_c == true){
         r-=0.1;
         g-=0.1;
         b-=0.1;
         if(r<=0 || g<=0 || b<=0){
-            flag = false;
+            flag_c = false;
         }
     }
     
     if(waiting < 80){
         waiting++;
     }else{
-        if(a > 0){ a --; }else{ a = 255;}
+        if(a < 255){ a +=0.1; }else{ a = 100; }
     }
     
     
-    //  **********
+    //  *****   velocity    *****
     
+    time++;
     centx += speedX;
     centy += speedY;
     
@@ -101,36 +109,7 @@ void pen::update(){
         speedY = speedY * -1;
     }
     
-    time++;
     
-    //     float ax = 0.0;
-    //     float ay = 0.0;
-    //     int lencon = ofRandom(50)+10;
-    //
-    //     for (int n=0; n<10; n++) { // 10
-    //
-    //     float ddx = this[n].centx-centx;
-    //     float ddy = this[n].centy-centy;
-    //     float d = sqrt(ddx*ddx + ddy*ddy);
-    //     float t = atan2(ddy,ddx);
-    //
-    //     if (this[n].identify > identify) {
-    //
-    //     if (d>lencon) {
-    //     ax += 10.0 * cos(t);
-    //     ay += 10.0 * sin(t); // 10.0
-    //     }
-    //     } else {
-    //
-    //     if (d<lencon) {
-    //     ax += (lencon-d)/10 * cos(t+PI); //(lencon-d)/10 *
-    //     ay += (lencon-d)/10 * sin(t+PI);
-    //     }
-    //     }
-    //
-    //     }
-    //
-    //
     
     if (flag_t == false) {
         speedX += ofRandom(-1,1);
@@ -149,7 +128,7 @@ void pen::update(){
         
     }
     
-    speedX *= 0.95; // *= 0.95
+    speedX *= 0.95;
     speedY *= 0.95;
     
     if (speedX == speedY) {
@@ -172,82 +151,38 @@ void pen::draw(){
     
     ofEnableSmoothing();
     ofEnableAlphaBlending();
-
-    if (step < waitCnt) {
-        step++;
+    
+    
+    if (setEraser) {
+        ofSetColor(0, 0, 0, 1);
+    }else{
+        ofSetColor(r+50, g+30, b-30, a);
     }
-    else {
-        ofSetColor(r, g, b);
-        //        ofBeginShape();
+    
+    
+    for (int n=0; n<=50; n++) {
         
-//        for (float ang=0; ang <= 360; ang+=5) {
+        float dx = this[n].centx-centx;
+        float dy = this[n].centy-centy;
+        float d = sqrt(dx*dx + dy*dy);
         
-//            radiusNoise += 0.05;
-//            thisRadius = radius + (ofNoise(radiusNoise)*10)-5;
-//            x = centx + (thisRadius * cos(ang * 3.1415926/180));
-//            y = centy + (thisRadius * sin(ang * 3.1415926/180));
-//            oppx = centx + (thisRadius * cos(ang * 3.1415926/180+PI));
-//            oppy = centy + (thisRadius * sin(ang * 3.1415926/180+PI));
-//            ofCircle(centx, centy, 1);
-            
-//        }
-        //        ofEndShape();
-        
-        
-        
-        for (int n=0; n<50; n++) { // 10
-            
-            float dx = this[n].centx-centx;
-            float dy = this[n].centy-centy;
-            float d = sqrt(dx*dx + dy*dy);
-            
-            if (d < this[n].radius+radius) {
-                if (d > abs(this[n].radius-radius)) {
+        if (d < this[n].radius+radius) {
+            if (d > abs(this[n].radius-radius)) {
+                
+                for (int i=0; i < numsands; i++) {
                     
-                    for (int i=0; i < numsands; i++) {
-                        
-                        sands[i].render(centx, centy, this[n].centx, this[n].centy);
-                        
-                        
-                    }
+                    sands[i].render(centx, centy, this[n].centx, this[n].centy);
                     
                     
                 }
+                
             }
-            
         }
         
-        
-        
-        //    }
-        
     }
+    
+    
+    
 }
 
-/*
- //--------------------------------------------------------------
- void pen::connectTo(int f){
- 
- if (numcon < maxcon) {
- if (! friendOf(f)) {
- connections[numcon] = f;
- numcon++;
- }
- }
- 
- }
- 
- //--------------------------------------------------------------
- bool pen::friendOf(int x){
- 
- bool isFriend = false;
- for (int n=0; n<numcon; n++) {
- if (connections[n] == x) {
- isFriend = true;
- }
- }
- return isFriend;
- 
- }
- */
 

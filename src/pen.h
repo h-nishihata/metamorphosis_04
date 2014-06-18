@@ -9,6 +9,7 @@ class pen{
     
 public:
     
+    //  stroke
     int centx;
     int centy;
     float speedX;
@@ -25,19 +26,20 @@ public:
     float radiusNoise;
     float thisRadius;
     float radLimit;
-    float x;
-    float y;
-    float oppx;
-    float oppy;
-
+    
+    
+    //  colors
+    bool setEraser;
     int r;
     int g;
     int b;
     float col;
-    bool flag;
+    bool flag_c;
     int a;
     int waiting;
     
+    
+    //  functions
     pen();
     void setup();
     void update();
@@ -46,12 +48,6 @@ public:
     void setG(int green);
     void setB(int blue);
     void setID(int ID);
-
-//    int maxcon;
-//    int numcon;
-//    int connections[];
-//    void connectTo(int f);
-//    bool friendOf(int x);
 
     sandPainter sands[numsands];
     
