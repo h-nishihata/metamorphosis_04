@@ -2,8 +2,8 @@
 
 pen::pen(){
     
-    centx = ofRandom(1440);
-    centy = ofRandom(900);
+    centx = ofRandom(1920);
+    centy = ofRandom(1200);
     
 //    waitCnt = ofRandom(0, 300);
 //    step = 0;
@@ -89,11 +89,11 @@ void pen::update(){
         }
     }
     
-    if(waiting < 80){
-        waiting++;
-    }else{
-        if(a < 255){ a +=0.1; }else{ a = 100; }
-    }
+//    if(waiting < 80){
+//        waiting++;
+//    }else{
+//        if(a < 255){ a +=0.1; }else{ a = 100; }
+//    }
     
     
     //  *****   velocity    *****
@@ -102,10 +102,10 @@ void pen::update(){
     centx += speedX;
     centy += speedY;
     
-    if (centx >= 1440 || centx <= 0) {
+    if (centx >= 1920 || centx <= 0) {
         speedX = speedX * -1;
     }
-    if (centy >= 900 || centy <= 0) {
+    if (centy >= 1200 || centy <= 0) {
         speedY = speedY * -1;
     }
     
@@ -156,7 +156,7 @@ void pen::draw(){
     if (setEraser) {
         ofSetColor(0, 0, 0, 1);
     }else{
-        ofSetColor(r+50, g+30, b-30, a);
+        ofSetColor(r, g, b, a);
     }
     
     

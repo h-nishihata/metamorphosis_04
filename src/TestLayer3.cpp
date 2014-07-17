@@ -3,8 +3,8 @@
 //--------------------------------------------------------------------------------------------------------------
 void TestLayer3::setup(){
     
-    x = -50;
-    y = -10;
+//    x = -50;
+//    y = -10;
     speedX = 0.1;
     speedY = 0.1;
     img.loadImage("einoh.jpg");
@@ -13,7 +13,7 @@ void TestLayer3::setup(){
 //--------------------------------------------------------------------------------------------------------------
 void TestLayer3::update(){
     
-    x += speedX;
+//    x += speedX;
     y += speedY;
     
     if (x >= 0 || x <= -313) {
@@ -31,6 +31,6 @@ void TestLayer3::draw(){
     ofBackground(255,255,255,0);
     
     ofSetColor(200,180,100);
-    img.draw(x, y, img.width, img.height);
+    img.draw(x, y, 1920, img.height * 1.095);
     
 }
