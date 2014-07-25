@@ -14,7 +14,7 @@ pen::pen(){
     speedX = ofRandom(-3,3);
     speedY = ofRandom(-0.1,0.1);
     
-    if(ofRandom(100) > 60){
+    if(ofRandom(100) > 50){
         setEraser = true;
     }else{
         setEraser = false;
@@ -77,7 +77,7 @@ void pen::update(){
         r+=0.1;
         g+=0.1;
         b+=0.1;
-        if(r>=255 || g>=255 || b>=25){
+        if(r>=200 || g>=200 || b>=200){
             flag_c = true;
         }
     }else if (flag_c == true){
@@ -89,11 +89,11 @@ void pen::update(){
         }
     }
     
-//    if(waiting < 80){
-//        waiting++;
-//    }else{
-//        if(a < 255){ a +=0.1; }else{ a = 100; }
-//    }
+    if(waiting < 80){
+        waiting++;
+    }else{
+        if(a > 0){ a -=0.1; }else{ a = 255; }
+    }
     
     
     //  *****   velocity    *****
@@ -121,7 +121,7 @@ void pen::update(){
     }else if (flag_t == true){
         speedX += ofRandom(-0.9, 1);
         speedY += ofRandom(-0.9, 1);
-        if(time > 300){
+        if(time > 200){
             flag_t = false;
             time = 0;
         }
@@ -154,7 +154,7 @@ void pen::draw(){
     
     
     if (setEraser) {
-        ofSetColor(0, 0, 0, 1);
+        ofSetColor(255, 255, 255, 0);
     }else{
         ofSetColor(r, g, b, a);
     }
