@@ -160,7 +160,7 @@ void pen::draw(){
     }
     
     
-    for (int n=0; n<=50; n++) {
+    for (int n=0; n<=25; n++) {
         
         float dx = this[n].centx-centx;
         float dy = this[n].centy-centy;

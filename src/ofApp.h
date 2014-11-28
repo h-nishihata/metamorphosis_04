@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "pen.h"
-#define NUM 50
+#define NUM 25
 
 class ofApp : public ofBaseApp{
 public:
